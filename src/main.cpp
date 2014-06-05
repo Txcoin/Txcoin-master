@@ -2813,7 +2813,7 @@ bool InitBlockIndex() {
         if (fTestNet)
             pszTimestamp = "The greatest danger to freedom is a government that ignores the constitution";
         else
-            pszTimestamp = "I ask, Sir, what is the militia? It is the whole people.";
+            pszTimestamp = "The 1st TXC is born at 06:06:06,6th June,2014. Age shall not weary you, nor the years condemn.";
 
         CTransaction txNew;
         txNew.vin.resize(1);
@@ -2838,8 +2838,8 @@ bool InitBlockIndex() {
         else
         {
             //block.nTime    = 1402005966;//20140606060606
-            block.nTime    = 1401775201;
-            block.nNonce   = 1222873622;
+            block.nTime    = 1402049166;
+            block.nNonce   = 1;
         }
 
         if (true && (block.GetHash() != hashGenesisBlock)) {//通过将false改为true，来计算出创世块相关参数
