@@ -32,7 +32,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("00000000207753de014f7ba6f887ee12779bd88382bf90d37f057785566ac968");
+uint256 hashGenesisBlock("000000005b73c05429f491ff30a475a4e10b18be553720ca18ca744d5910a802");
 
 static CBigNum bnProofOfWorkLimits[2] = { CBigNum(~uint256(0) >> 32), CBigNum(~uint256(0) >> 20) };
 
@@ -2813,7 +2813,7 @@ bool InitBlockIndex() {
         if (fTestNet)
             pszTimestamp = "The greatest danger to freedom is a government that ignores the constitution";
         else
-            pszTimestamp = "The 1st TXC is born at 06:06:06,6th June,2014. Age shall not weary you, nor the years condemn.";
+            pszTimestamp = "The 1st TXC is born at 06-06-2014 06:06:06";
 
         CTransaction txNew;
         txNew.vin.resize(1);
@@ -2839,7 +2839,7 @@ bool InitBlockIndex() {
         {
             //block.nTime    = 1402005966;//20140606060606
             block.nTime    = 1402049166;
-            block.nNonce   = 1;
+            block.nNonce   = 78003447;
         }
 
         if (true && (block.GetHash() != hashGenesisBlock)) {//通过将false改为true，来计算出创世块相关参数
@@ -2866,7 +2866,7 @@ bool InitBlockIndex() {
         if (fTestNet)//通过查看log文件相关值来确定下面的常量
             assert(block.hashMerkleRoot == uint256("0x1037b843e015bb92ab06eeed2ae1fd3a6bf2d231817c4edd5185afc0d74f7329"));
         else
-            assert(block.hashMerkleRoot == uint256("0x56e05d7e236c3d52e3e8281e7803c2af3d69bb0566d2e88e622d12635f7b6fd1"));
+            assert(block.hashMerkleRoot == uint256("0x30e6fb26510d9d3818cd43693ef4f03834140dad71e9e16fa3e6a5276ea98b71"));
 
         block.print();
         assert(hash == hashGenesisBlock);
