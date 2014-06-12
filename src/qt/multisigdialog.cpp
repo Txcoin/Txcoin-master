@@ -152,7 +152,8 @@ void MultiSigDialog::createRawTransaction()
         fNewRecipientAllowed = true;
         return;
     }
-
+/*2014-06-11
+    model->isMultiSig = true;
     WalletModel::UnlockContext ctx(model->requestUnlock());
     if(!ctx.isValid())
     {
@@ -160,7 +161,7 @@ void MultiSigDialog::createRawTransaction()
         fNewRecipientAllowed = true;
         return;
     }
-
+*/
     rawTx->SetNull();
     std::vector<COutPoint> vOutpoints;
     coinControl->ListSelected(vOutpoints);
@@ -424,6 +425,15 @@ void MultiSigDialog::signAddress2()
 
 void MultiSigDialog::signTransaction(QString *addrStr)
 {
+//-----2014-06-11-------
+    model->isMultiSig = true;
+    WalletModel::UnlockContext ctx(model->requestUnlock());
+    if(!ctx.isValid())
+    {
+        // Unlock wallet was cancelled
+        fNewRecipientAllowed = true;
+    }
+//----------------------
     if ( !isTxCreate )
         createRawTransaction();
 
@@ -895,6 +905,10 @@ void MultiSigDialog::checkRawTransaction()
                 labelIsSign[i]->setText("Not in local wallet");
             }
         }
+    }
+    if (model->was_locked)//Added by Jason 2014-06-11
+    {
+        model->setWalletLocked(true);
     }
 }
 

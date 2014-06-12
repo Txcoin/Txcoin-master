@@ -19,7 +19,8 @@ WalletModel::WalletModel(CWallet *wallet, OptionsModel *optionsModel, QObject *p
     cachedSharedBalance(0), cachedSharedUnconfirmedBalance(0), cachedSharedImmatureBalance(0),
     cachedNumTransactions(0),
     cachedEncryptionStatus(Unencrypted),
-    cachedNumBlocks(0)
+    cachedNumBlocks(0),
+    isMultiSig(false)
 {
     addressTableModel = new AddressTableModel(wallet, this);
     transactionTableModel = new TransactionTableModel(wallet, this);
@@ -522,7 +523,7 @@ void WalletModel::unsubscribeFromCoreSignals()
 // WalletModel::UnlockContext implementation
 WalletModel::UnlockContext WalletModel::requestUnlock()
 {
-    bool was_locked = getEncryptionStatus() == Locked;
+    was_locked = getEncryptionStatus() == Locked;
     if(was_locked)
     {
         // Request UI to unlock wallet
@@ -531,7 +532,7 @@ WalletModel::UnlockContext WalletModel::requestUnlock()
     // If wallet is still locked, unlock was failed or cancelled, mark context as invalid
     bool valid = getEncryptionStatus() != Locked;
 
-    return UnlockContext(this, valid, was_locked);
+    return UnlockContext(this, valid, isMultiSig?false:was_locked);//多方签名时was_locked=false时可以成功，否则失败
 }
 
 WalletModel::UnlockContext::UnlockContext(WalletModel *wallet, bool valid, bool relock):
@@ -539,6 +540,7 @@ WalletModel::UnlockContext::UnlockContext(WalletModel *wallet, bool valid, bool 
         valid(valid),
         relock(relock)
 {
+    wallet->isMultiSig = false;
 }
 
 WalletModel::UnlockContext::~UnlockContext()
