@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = Txcoin-qt
 macx:TARGET = "Txcoin-Qt"
-VERSION = 0.6.1.8
+VERSION = 1.1.1.8
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -30,6 +30,8 @@ BOOST_INCLUDE_PATH=C:\DevTool\boost_1_55_0
 BOOST_LIB_PATH=C:\DevTool\boost_1_55_0\stage/lib
 BDB_INCLUDE_PATH=C:\DevTool\db-6.0.20\build_unix
 BDB_LIB_PATH=C:\DevTool\db-6.0.20\build_unix
+#BDB_INCLUDE_PATH=C:\DevTool\db-4.8.30.NC\build_unix
+#BDB_LIB_PATH=C:\DevTool\db-4.8.30.NC\build_unix
 OPENSSL_INCLUDE_PATH=C:\DevTool\openssl-1.0.1e\include
 OPENSSL_LIB_PATH=C:\DevTool\openssl-1.0.1e
 MINIUPNPC_INCLUDE_PATH=C:\DevTool\miniupnpc-1.8

@@ -647,7 +647,7 @@ void UpdateCoins(const CTransaction& tx, CValidationState &state, CCoinsViewCach
 
     std::string ToString() const
     {
-        std::string str;
+        std::string str;//#if defined(QT_GUI)
         str += strprintf("CTransaction(hash=%s, ver=%d, vin.size=%"PRIszu", vout.size=%"PRIszu", nLockTime=%u)\n",
             GetHash().ToString().c_str(),
             nVersion,
