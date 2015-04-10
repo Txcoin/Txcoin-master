@@ -1243,12 +1243,14 @@ void ThreadDNSAddressSeed()
 
 static unsigned int pnSeed[] =
 {
-    0xadfffb89, 0x04197e62,0x05197e62,0x06197e62,0x32658bae,0x33658bae,0x34658bae,
+    //0xadfffb89, 0x04197e62,0x05197e62,0x06197e62,0x32658bae,0x33658bae,0x34658bae,
+    0x89fbffad, 0x627e1904,0x627e1905,0x627e1906,0xae8b6532,0xae8b6533,0xae8b6534
 };
 
 static unsigned int pnSeed_testnet[] =
 {
-    0xadfffb89, 0x04197e62,0x05197e62,0x06197e62,0x32658bae,0x33658bae,0x34658bae,
+    //0xadfffb89, 0x04197e62,0x05197e62,0x06197e62,0x32658bae,0x33658bae,0x34658bae,
+    0x89fbffad, 0x627e1904,0x627e1905,0x627e1906,0xae8b6532,0xae8b6533,0xae8b6534
 };
 
 void DumpAddresses()
@@ -1522,7 +1524,7 @@ void static StartSync(const vector<CNode*> &vNodes) {
         // check preconditions for allowing a sync
         if (!pnode->fClient && !pnode->fOneShot &&
             !pnode->fDisconnect && pnode->fSuccessfullyConnected &&
-            (pnode->nStartingHeight > (nBestHeight - 144)) &&
+            (pnode->nStartingHeight > (nBestHeight - 144)) &&//144->720?
             (pnode->nVersion < NOBLKS_VERSION_START || pnode->nVersion >= NOBLKS_VERSION_END)) {
             // if ok, compare node's score with the best so far
             double dScore = NodeSyncScore(pnode);
